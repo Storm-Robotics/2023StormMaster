@@ -18,7 +18,7 @@ public final class Constants {
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
         public static final COTSFalconSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
-            COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L2);
+            COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L1);
 
         /* Drivetrain Constants */
         public static final double trackWidth = Units.inchesToMeters(21.73); //TODO: This must be tuned to specific robot
@@ -130,6 +130,26 @@ public final class Constants {
         }
     }
 
+    public static final class RobotComponents {
+        
+        // Turret
+        public static final int turretMotorID = 9;
+        public static final double turretGearboxReduction = 1/462;
+        public static final double[] turretMotorPID = {0.5, 0, 0, 0}; // kP, kI, kD, kFF
+
+        // Vertical Elevator
+        public static final int verticalMaster = 10;
+        public static final int verticalSlave = 11;
+
+        // Horizontal Elevator
+        public static final int horizontalMaster = 12;
+        public static final int horizontalSlave = 13;
+
+        // Intake
+        public static final int intakeMaster = 14;
+
+    }
+
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
@@ -145,4 +165,6 @@ public final class Constants {
             new TrapezoidProfile.Constraints(
                 kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
     }
+
+
 }
