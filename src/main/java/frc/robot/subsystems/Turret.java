@@ -31,6 +31,7 @@ public class Turret extends SubsystemBase {
         pidController.setI(Constants.RobotComponents.turretMotorPID[1]);
         pidController.setD(Constants.RobotComponents.turretMotorPID[2]);
         pidController.setFF(Constants.RobotComponents.turretMotorPID[3]);
+        pidController.setOutputRange(-1, 1);
     }
 
     /**
@@ -42,7 +43,7 @@ public class Turret extends SubsystemBase {
 
         double revolutions = (position/360) - encoder.getPosition();
 
-        pidController.setReference(position/360, CANSparkMax.ControlType.kPosition);
+        pidController.setReference(position/360, CANSparkMax.ControlType.kSmartMotion);
 
         double error = (position/360 - encoder.getPosition()) * 360;
         SmartDashboard.putNumber("Turret Error", error);
@@ -58,5 +59,4 @@ public class Turret extends SubsystemBase {
         return encoder.getPosition() * 360;
     }
     
-
 }

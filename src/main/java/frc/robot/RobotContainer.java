@@ -20,6 +20,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
+    private final XboxController controller = new XboxController(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -32,6 +33,7 @@ public class RobotContainer {
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+    private final Turret turret = new Turret();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -44,6 +46,8 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
+        
+        
         );
 
         // Configure the button bindings

@@ -13,6 +13,13 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.1;
 
+    public static class GameTime {
+
+        public static boolean hasCone = false;
+        public static boolean hasBlock = false;
+
+    }
+
     public static final class Swerve {
         public static final int pigeonID = 1;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
@@ -134,19 +141,43 @@ public final class Constants {
         
         // Turret
         public static final int turretMotorID = 9;
+
         public static final double turretGearboxReduction = 1/462;
-        public static final double[] turretMotorPID = {0.5, 0, 0, 0}; // kP, kI, kD, kFF
+        public static final double[] turretMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
         // Vertical Elevator
         public static final int verticalMaster = 10;
         public static final int verticalSlave = 11;
 
+        public static final double REVS_PER_HEIGHT = 20; //TODO: MEASURE
+
+        public static final double MAX_HEIGHT = 200;
+        public static final double MIN_HEIGHT = 0;
+
+        public static final double[] verticalElevatorPID = {0.8, 0, 0, 0}; // kP, kI, KD, kFF
+
         // Horizontal Elevator
         public static final int horizontalMaster = 12;
         public static final int horizontalSlave = 13;
 
-        // Intake
-        public static final int intakeMaster = 14;
+        public static double[] horitonalElevatorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
+
+        public static final double REVS_PER_LENGTH = 60; //TODO: figure this out (MEASURE)
+
+        public static final double MAX_LENGTH = 300; //TODO: figure this out (MEASURE)
+        public static final double MIN_LENGTH = 0; //TODO: figure this out (MEASURE)
+
+        // Arm
+        public static final int wrist = 14;
+        public static final int intake = 15;
+
+            // Wrist
+            public static final double MAX_ANGLE = 90;
+            public static final double MIN_ANGLE = -30;
+
+            public static final double[] wristMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
+
+
 
     }
 
