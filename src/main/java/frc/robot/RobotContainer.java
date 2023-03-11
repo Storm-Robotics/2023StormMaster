@@ -31,9 +31,17 @@ public class RobotContainer {
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
+    /* Controller Buttons */
+    private final JoystickButton elevatorUp = new JoystickButton(controller, XboxController.Button.kY.value);
+    private final JoystickButton elevatorDown = new JoystickButton(controller, XboxController.Button.kA.value);
+    private final JoystickButton elevatorOut = new JoystickButton(controller, XboxController.Button.kB.value);
+    private final JoystickButton elevatorIn = new JoystickButton(controller, XboxController.Button.kX.value);
+
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final Turret turret = new Turret();
+    private final VerticalElevator verticalElevator = new VerticalElevator();
+    private final HorizontalElevator horizontalElevator = new HorizontalElevator();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -46,9 +54,9 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
-        
-        
         );
+
+        setDefaultCommands();
 
         // Configure the button bindings
         configureButtonBindings();
@@ -63,6 +71,17 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
+        /* Controller Buttons */
+        elevatorUp.onTrue(new InstantCommand(() -> verticalElevator.moveUp()));
+        elevatorDown.onTrue(new InstantCommand(() -> verticalElevator.moveDown()));
+        elevatorIn.onTrue(new InstantCommand(() -> horizontalElevator.moveIn()));
+        elevatorOut.onTrue(new InstantCommand(() -> horizontalElevator.moveOut()));
+
+    }
+
+    private void setDefaultCommands() {
+        turret.setDefaultCommand(new MoveTurret(controller, turret));
     }
 
     /**

@@ -145,6 +145,8 @@ public final class Constants {
         public static final double turretGearboxReduction = 1/462;
         public static final double[] turretMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
+        public static final double TURRET_SPEED_MULTIPLIER = 0.5;
+
         // Vertical Elevator
         public static final int verticalMaster = 10;
         public static final int verticalSlave = 11;
@@ -155,6 +157,8 @@ public final class Constants {
         public static final double MIN_HEIGHT = 0;
 
         public static final double[] verticalElevatorPID = {0.8, 0, 0, 0}; // kP, kI, KD, kFF
+
+        public static final double VERTICAL_ELEVATOR_SPEED_MULTIPLIER = 0.25;
 
         // Horizontal Elevator
         public static final int horizontalMaster = 12;
@@ -167,6 +171,8 @@ public final class Constants {
         public static final double MAX_LENGTH = 300; //TODO: figure this out (MEASURE)
         public static final double MIN_LENGTH = 0; //TODO: figure this out (MEASURE)
 
+        public static final double HORIZONTAL_ELEVATOR_SPEED_MULTIPLIER = 0.25;
+
         // Arm
         public static final int wrist = 14;
         public static final int intake = 15;
@@ -177,6 +183,7 @@ public final class Constants {
 
             public static final double[] wristMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
+        public static final double INTAKE_SPEED_MULTIPLIER = 0.9;
 
 
     }

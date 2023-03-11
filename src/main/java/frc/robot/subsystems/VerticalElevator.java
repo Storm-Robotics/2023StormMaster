@@ -27,7 +27,8 @@ public class VerticalElevator extends SubsystemBase {
 
         slave.follow(master, true);
 
-        this.encoder = master.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
+        // this.encoder = master.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
+        this.encoder = master.getEncoder();
 
         this.pidController = master.getPIDController();
         pidController.setFeedbackDevice(encoder);
@@ -40,6 +41,8 @@ public class VerticalElevator extends SubsystemBase {
         this.currentHeight = getCurrentHeight();
 
         this.encoder.setPositionConversionFactor(1/Constants.RobotComponents.REVS_PER_HEIGHT);
+
+        this.encoder.setPosition(0);
 
     }
 
@@ -66,11 +69,19 @@ public class VerticalElevator extends SubsystemBase {
     }
 
     public void moveUp() {
-        master.set(1);
+
+        // TODO: Fix This
+        // if(encoder.getPosition() >= Constants.RobotComponents.MAX_HEIGHT);
+
+        master.set(1 * Constants.RobotComponents.VERTICAL_ELEVATOR_SPEED_MULTIPLIER);
     }
 
     public void moveDown() {
-        master.set(-1);
+
+        if(encoder.getPosition() <=0) return;
+
+        master.set(-1 * Constants.RobotComponents.VERTICAL_ELEVATOR_SPEED_MULTIPLIER);
+
     }
     
 }

@@ -43,7 +43,7 @@ public class Turret extends SubsystemBase {
 
         double revolutions = (position/360) - encoder.getPosition();
 
-        pidController.setReference(position/360, CANSparkMax.ControlType.kSmartMotion);
+        pidController.setReference(revolutions, CANSparkMax.ControlType.kPosition);
 
         double error = (position/360 - encoder.getPosition()) * 360;
         SmartDashboard.putNumber("Turret Error", error);
@@ -57,6 +57,16 @@ public class Turret extends SubsystemBase {
      */
     public double getHeading() {
         return encoder.getPosition() * 360;
+    }
+
+    /**
+     * Moves Turret given a certain motor output
+     * @param between -1 and 1
+     */
+    public void move(double speed) {
+
+        master.set(speed * Constants.RobotComponents.TURRET_SPEED_MULTIPLIER); // speed multiplier set to 0.5
+
     }
     
 }

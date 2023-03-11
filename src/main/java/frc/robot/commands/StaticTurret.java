@@ -15,13 +15,21 @@ public class StaticTurret extends CommandBase {
         addRequirements(turret);
     }
 
+
+
     @Override
     public void execute() {
         turret.moveTo(180-swerve.getYaw().getDegrees());
     }
 
+    @Override
     public boolean isFinished() {
         return Math.abs((180.0 - turret.getHeading())) < 5.0;
     }
+
+    // @Override
+    // public void end() {
+    //     turret.move(0);
+    // }
 
 }
