@@ -77,7 +77,6 @@ public class RobotContainer {
         elevatorDown.onTrue(new InstantCommand(() -> verticalElevator.moveDown()));
         elevatorIn.onTrue(new InstantCommand(() -> horizontalElevator.moveIn()));
         elevatorOut.onTrue(new InstantCommand(() -> horizontalElevator.moveOut()));
-
     }
 
     private void setDefaultCommands() {

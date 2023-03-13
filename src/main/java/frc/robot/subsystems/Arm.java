@@ -41,11 +41,11 @@ public class Arm extends SubsystemBase {
     }
 
     public void intakeIn() {
-        intake.set(ControlMode.Current, 100);
+        intake.set(ControlMode.Velocity, 1);
     }
 
     public void intakeOut() {
-        intake.set(ControlMode.Current, -100);
+        intake.set(ControlMode.Velocity, -1);
     }
 
     public double moveWristTo(double heading) {
