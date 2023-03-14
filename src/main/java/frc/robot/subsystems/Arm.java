@@ -64,4 +64,8 @@ public class Arm extends SubsystemBase {
 
     }
 
+    public void moveWrist(double speed) {
+        this.wrist.set(speed);
+    }
+
 }

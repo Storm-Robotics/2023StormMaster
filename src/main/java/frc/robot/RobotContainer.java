@@ -42,6 +42,7 @@ public class RobotContainer {
     private final Turret turret = new Turret();
     private final VerticalElevator verticalElevator = new VerticalElevator();
     private final HorizontalElevator horizontalElevator = new HorizontalElevator();
+    private final Arm arm = new Arm();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -81,6 +82,7 @@ public class RobotContainer {
 
     private void setDefaultCommands() {
         turret.setDefaultCommand(new MoveTurret(controller, turret));
+        arm.setDefaultCommand(new InstantCommand(() -> arm.moveWrist(controller.getRightY())));
     }
 
     /**
