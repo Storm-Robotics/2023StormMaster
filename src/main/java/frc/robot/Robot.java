@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -21,6 +23,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  AddressableLED led;
+  AddressableLEDBuffer ledBuffer;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -31,6 +36,19 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    led = new AddressableLED(5);
+
+    ledBuffer = new AddressableLEDBuffer(Constants.RobotComponents.LED_LENGTH);
+    led.setLength(ledBuffer.getLength());
+
+    for(var i = 0; i < ledBuffer.getLength(); i++) {
+      ledBuffer.setRGB(i, Constants.PURPLE_RGB[0], Constants.PURPLE_RGB[1], Constants.PURPLE_RGB[2]);
+    }
+
+    led.setData(ledBuffer);
+    led.start();
+
   }
 
   /**

@@ -11,7 +11,10 @@ import frc.lib.util.COTSFalconSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
+
     public static final double stickDeadband = 0.1;
+
+    public static final int[] PURPLE_RGB = {127, 77, 161};
 
     public static class GameTime {
 
@@ -137,6 +140,9 @@ public final class Constants {
     }
 
     public static final class RobotComponents {
+
+        // Adressable LEDs
+        public static final int LED_LENGTH = 60;
         
         // Turret
         public static final int turretMotorID = 9;
