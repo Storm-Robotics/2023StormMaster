@@ -25,6 +25,7 @@ public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
     public final AHRS gyro;
+    public SwerveDriveKinematics sKinematics;
 
     public Swerve() {
         gyro = new AHRS(SPI.Port.kMXP, (byte) 200);

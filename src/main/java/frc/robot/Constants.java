@@ -150,14 +150,12 @@ public final class Constants {
         public static final int verticalMaster = 10;
         public static final int verticalSlave = 11;
 
-        public static final double REVS_PER_HEIGHT = 20; // TODO: MEASURE
-
-        public static final double MAX_HEIGHT = 200;
-        public static final double MIN_HEIGHT = 0;
-
         public static final double[] verticalElevatorPID = {0.8, 0, 0, 0}; // kP, kI, KD, kFF
 
         public static final double VERTICAL_ELEVATOR_SPEED_MULTIPLIER = 0.25;
+
+        // TODO: Set this
+        public static final double VERITCAL_SPROCKET_DIAMETER = 5; // in inches
 
         // Horizontal Elevator
         public static final int horizontalMaster = 12;
@@ -182,7 +180,10 @@ public final class Constants {
 
             public static final double[] wristMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
+            public static final double WRIST_TOTAL_GEAR_RATIO = 78.29; // TODO: find this out
+
         public static final double INTAKE_SPEED_MULTIPLIER = 0.9;
+
 
 
     }

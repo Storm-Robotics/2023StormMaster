@@ -1,5 +1,15 @@
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.PathPlanner;
+import com.pathplanner.lib.PathPlannerTrajectory;
+import com.pathplanner.lib.auto.PIDConstants;
+import com.pathplanner.lib.auto.SwerveAutoBuilder;
+
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -93,5 +103,27 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return new exampleAuto(s_Swerve);
+    }
+
+    public Command configureAutonomous() {
+
+        ArrayList<PathPlannerTrajectory> pathGroup = (ArrayList<PathPlannerTrajectory>) PathPlanner.loadPathGroup("ChargeStationAuto", new PathConstraints(4, 3));
+
+        HashMap<String, Command> eventMap = new HashMap<>();
+
+        SwerveAutoBuilder autoBuilder = new SwerveAutoBuilder(
+            s_Swerve::getPose,
+            s_Swerve::resetOdometry,
+            Constants.Swerve.swerveKinematics,
+            new PIDConstants(0.5, 0, 0),
+            new PIDConstants(0.5, 0, 0),
+            s_Swerve::setModuleStates,
+            eventMap,
+            true,
+            s_Swerve
+        );
+
+        return autoBuilder.fullAuto(pathGroup);
+
     }
 }

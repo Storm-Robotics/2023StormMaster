@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -61,6 +62,18 @@ public class Arm extends SubsystemBase {
         double error = (heading/360 - encoder.getPosition()) * 360;
         SmartDashboard.putNumber("Turret Error", error);
         return error;
+
+    }
+
+    public void moveWristDegrees(double degrees) {
+
+        pidController.setReference(getRotations(degrees), ControlType.kPosition);
+
+    }
+
+    public double getRotations(double degrees) {
+
+        return (degrees/360) * Constants.RobotComponents.WRIST_TOTAL_GEAR_RATIO;
 
     }
 

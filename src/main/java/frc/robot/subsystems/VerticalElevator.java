@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
@@ -14,7 +16,7 @@ public class VerticalElevator extends SubsystemBase {
 
     public CANSparkMax master;
     public CANSparkMax slave;
-    RelativeEncoder encoder;
+    AbsoluteEncoder encoder;
 
     SparkMaxPIDController pidController;
 
@@ -28,7 +30,7 @@ public class VerticalElevator extends SubsystemBase {
         slave.follow(master, true);
 
         // this.encoder = master.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
-        this.encoder = master.getEncoder();
+        this.encoder = master.getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
 
         this.pidController = master.getPIDController();
         pidController.setFeedbackDevice(encoder);
@@ -40,9 +42,7 @@ public class VerticalElevator extends SubsystemBase {
 
         this.currentHeight = getCurrentHeight();
 
-        this.encoder.setPositionConversionFactor(1/Constants.RobotComponents.REVS_PER_HEIGHT);
-
-        this.encoder.setPosition(0);
+        // this.encoder.setPosition(0);
 
     }
 
@@ -57,14 +57,32 @@ public class VerticalElevator extends SubsystemBase {
      */
     public double moveTo(double height) { //TODO: finish this code
 
-        if(height + currentHeight > Constants.RobotComponents.MAX_HEIGHT) {
-            height =  Constants.RobotComponents.MAX_HEIGHT;
-        } else if(currentHeight - height < Constants.RobotComponents.MIN_HEIGHT) {
-            height = Constants.RobotComponents.MIN_HEIGHT;
-        }
+        // if(height + currentHeight > Constants.RobotComponents.MAX_HEIGHT) {
+        //     height =  Constants.RobotComponents.MAX_HEIGHT;
+        // } else if(currentHeight - height < Constants.RobotComponents.MIN_HEIGHT) {
+        //     height = Constants.RobotComponents.MIN_HEIGHT;
+        // }
 
-        pidController.setReference(height, ControlType.kSmartMotion);
+        // pidController.setReference(getRevolutions(height), null)
+        
+
         return 0;
+
+    }
+
+    public void moveDistance(double dist) {
+        pidController.setReference(getRevolutions(dist), ControlType.kPosition);
+    }
+
+    /**
+     * 
+     * @param distance
+     */
+    public double getRevolutions(double distance) {
+
+        double revs = distance/(Math.PI*Constants.RobotComponents.VERITCAL_SPROCKET_DIAMETER);
+
+        return revs;
 
     }
 
