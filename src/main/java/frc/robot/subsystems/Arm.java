@@ -17,6 +17,7 @@ public class Arm extends SubsystemBase {
 
     CANSparkMax wrist;
     VictorSPX intake;
+    VictorSPX wincher;
     RelativeEncoder encoder;
 
     SparkMaxPIDController pidController;
@@ -27,6 +28,7 @@ public class Arm extends SubsystemBase {
 
         this.wrist = new CANSparkMax(Constants.RobotComponents.wrist, MotorType.kBrushless);
         this.intake = new VictorSPX(Constants.RobotComponents.intake);
+        this.wincher = new VictorSPX(Constants.RobotComponents.wincher);
 
         this.encoder = wrist.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
 
@@ -46,7 +48,7 @@ public class Arm extends SubsystemBase {
     }
 
     public void intakeOut() {
-        intake.set(ControlMode.Velocity, -1);
+        intake.set(ControlMode.Current, -1);
     }
 
     public double moveWristTo(double heading) {
@@ -78,7 +80,10 @@ public class Arm extends SubsystemBase {
     }
 
     public void moveWrist(double speed) {
+
         this.wrist.set(speed * Constants.RobotComponents.WRIST_SPEED_MULTIPLIER);
+        this.wincher.set(ControlMode.Current, speed);
+
     }
 
 }

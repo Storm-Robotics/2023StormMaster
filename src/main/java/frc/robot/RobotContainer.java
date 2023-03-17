@@ -44,14 +44,14 @@ public class RobotContainer {
     /* Controller Buttons */
     private final JoystickButton elevatorUp = new JoystickButton(controller, XboxController.Button.kY.value);
     private final JoystickButton elevatorDown = new JoystickButton(controller, XboxController.Button.kA.value);
-    private final JoystickButton elevatorOut = new JoystickButton(controller, XboxController.Button.kB.value);
-    private final JoystickButton elevatorIn = new JoystickButton(controller, XboxController.Button.kX.value);
+    // private final JoystickButton elevatorOut = new JoystickButton(controller, XboxController.Button.kB.value);
+    // private final JoystickButton elevatorIn = new JoystickButton(controller, XboxController.Button.kX.value);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final Turret turret = new Turret();
     private final VerticalElevator verticalElevator = new VerticalElevator();
-    private final HorizontalElevator horizontalElevator = new HorizontalElevator();
+    // private final HorizontalElevator horizontalElevator = new HorizontalElevator();
     private final Arm arm = new Arm();
 
 

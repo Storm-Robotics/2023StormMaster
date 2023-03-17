@@ -179,6 +179,7 @@ public final class Constants {
         // Arm
         public static final int wrist = 14;
         public static final int intake = 15;
+        public static final int wincher = 16;
 
             // Wrist
             public static final double MAX_ANGLE = 90;
