@@ -84,10 +84,14 @@ public class RobotContainer {
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
         /* Controller Buttons */
-        elevatorUp.onTrue(new InstantCommand(() -> verticalElevator.moveUp()));
-        elevatorDown.onTrue(new InstantCommand(() -> verticalElevator.moveDown()));
-        elevatorIn.onTrue(new InstantCommand(() -> horizontalElevator.moveIn()));
-        elevatorOut.onTrue(new InstantCommand(() -> horizontalElevator.moveOut()));
+        // elevatorUp.onTrue(new InstantCommand(() -> verticalElevator.moveUp()));
+        // elevatorDown.onTrue(new InstantCommand(() -> verticalElevator.moveDown()));
+        // elevatorIn.onTrue(new InstantCommand(() -> horizontalElevator.moveIn()));
+        // elevatorOut.onTrue(new InstantCommand(() -> horizontalElevator.moveOut()));
+
+        elevatorUp.whileTrue(new InstantCommand(() -> verticalElevator.moveUp(), verticalElevator));
+        elevatorDown.whileTrue(new InstantCommand(() -> verticalElevator.moveDown(), verticalElevator));
+
     }
 
     private void setDefaultCommands() {
