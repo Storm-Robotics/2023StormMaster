@@ -14,6 +14,8 @@ public class MoveTurret extends CommandBase {
         this.controller = controller;
         this.turret = turret;
 
+        addRequirements(turret);
+
     }
 
     @Override

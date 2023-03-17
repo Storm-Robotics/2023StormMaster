@@ -12,6 +12,9 @@ public class MoveArm extends CommandBase {
     public MoveArm(XboxController controller, Arm arm) {
         this.controller = controller;
         this.arm = arm;
+
+        addRequirements(arm);
+
     }
 
     @Override

@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    led = new AddressableLED(5);
+    led = new AddressableLED(9);
 
     ledBuffer = new AddressableLEDBuffer(Constants.RobotComponents.LED_LENGTH);
     led.setLength(ledBuffer.getLength());
