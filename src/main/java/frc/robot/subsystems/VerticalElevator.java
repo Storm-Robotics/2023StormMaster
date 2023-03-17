@@ -16,7 +16,7 @@ public class VerticalElevator extends SubsystemBase {
 
     public CANSparkMax master;
     public CANSparkMax slave;
-    AbsoluteEncoder encoder;
+    // AbsoluteEncoder encoder;
 
     SparkMaxPIDController pidController;
 
@@ -30,10 +30,10 @@ public class VerticalElevator extends SubsystemBase {
         slave.follow(master, true);
 
         // this.encoder = master.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
-        this.encoder = master.getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
+        // this.encoder = master.getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
 
         this.pidController = master.getPIDController();
-        pidController.setFeedbackDevice(encoder);
+        // pidController.setFeedbackDevice(encoder);
 
         pidController.setP(Constants.RobotComponents.verticalElevatorPID[0]);
         pidController.setI(Constants.RobotComponents.verticalElevatorPID[1]);
@@ -96,7 +96,7 @@ public class VerticalElevator extends SubsystemBase {
 
     public void moveDown() {
 
-        if(encoder.getPosition() <=0) return;
+        // if(encoder.getPosition() <=0) return;
 
         master.set(-1 * Constants.RobotComponents.VERTICAL_ELEVATOR_SPEED_MULTIPLIER);
 
