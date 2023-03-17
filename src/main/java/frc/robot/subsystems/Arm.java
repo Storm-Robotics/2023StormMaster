@@ -78,7 +78,7 @@ public class Arm extends SubsystemBase {
     }
 
     public void moveWrist(double speed) {
-        this.wrist.set(speed);
+        this.wrist.set(speed * Constants.RobotComponents.WRIST_SPEED_MULTIPLIER);
     }
 
 }

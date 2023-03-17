@@ -92,7 +92,7 @@ public class RobotContainer {
 
     private void setDefaultCommands() {
         turret.setDefaultCommand(new MoveTurret(controller, turret));
-        arm.setDefaultCommand(new InstantCommand(() -> arm.moveWrist(controller.getRightY())));
+        arm.setDefaultCommand(new MoveArm(controller, arm));
     }
 
     /**

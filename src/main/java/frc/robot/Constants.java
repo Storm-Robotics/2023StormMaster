@@ -150,7 +150,7 @@ public final class Constants {
         public static final double turretGearboxReduction = 1/462;
         public static final double[] turretMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
-        public static final double TURRET_SPEED_MULTIPLIER = 0.5;
+        public static final double TURRET_SPEED_MULTIPLIER = 0.25;
 
         // Vertical Elevator
         public static final int verticalMaster = 10;
@@ -187,6 +187,8 @@ public final class Constants {
             public static final double[] wristMotorPID = {1, 0, 0, 0}; // kP, kI, kD, kFF
 
             public static final double WRIST_TOTAL_GEAR_RATIO = 78.29; // TODO: find this out
+
+            public static final double WRIST_SPEED_MULTIPLIER = 0.25;
 
         public static final double INTAKE_SPEED_MULTIPLIER = 0.9;
 

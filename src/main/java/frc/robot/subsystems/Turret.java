@@ -65,7 +65,7 @@ public class Turret extends SubsystemBase {
      */
     public void move(double speed) {
 
-        master.set(speed * Constants.RobotComponents.TURRET_SPEED_MULTIPLIER); // speed multiplier set to 0.5
+        master.set(speed * Constants.RobotComponents.TURRET_SPEED_MULTIPLIER); // speed multiplier set to 0.25
 
     }
     
