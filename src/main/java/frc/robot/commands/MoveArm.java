@@ -19,7 +19,13 @@ public class MoveArm extends CommandBase {
 
     @Override
     public void execute() {
+
         arm.moveWrist(controller.getRightY());
+
+        if(controller.getAButtonPressed()) arm.intakeOut();
+        
+        if(controller.getYButtonPressed()) arm.intakeIn();
+
     }
 
     @Override

@@ -42,8 +42,8 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     /* Controller Buttons */
-    private final JoystickButton elevatorUp = new JoystickButton(controller, XboxController.Button.kY.value);
-    private final JoystickButton elevatorDown = new JoystickButton(controller, XboxController.Button.kA.value);
+    // private final JoystickButton elevatorUp = new JoystickButton(controller, XboxController.Button.kY.value);
+    // private final JoystickButton elevatorDown = new JoystickButton(controller, XboxController.Button.kA.value);
     // private final JoystickButton elevatorOut = new JoystickButton(controller, XboxController.Button.kB.value);
     // private final JoystickButton elevatorIn = new JoystickButton(controller, XboxController.Button.kX.value);
 
@@ -89,8 +89,8 @@ public class RobotContainer {
         // elevatorIn.onTrue(new InstantCommand(() -> horizontalElevator.moveIn()));
         // elevatorOut.onTrue(new InstantCommand(() -> horizontalElevator.moveOut()));
 
-        elevatorUp.whileTrue(new InstantCommand(() -> verticalElevator.moveUp(), verticalElevator));
-        elevatorDown.whileTrue(new InstantCommand(() -> verticalElevator.moveDown(), verticalElevator));
+        // elevatorUp.whileTrue(new InstantCommand(() -> verticalElevator.moveUp(), verticalElevator));
+        // elevatorDown.whileTrue(new InstantCommand(() -> verticalElevator.moveDown(), verticalElevator));
 
     }
 
@@ -105,8 +105,9 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return new exampleAuto(s_Swerve);
+        // Chooser
+        // return this.configureAutonomous();
+        return null;
     }
 
     public Command configureAutonomous() {
@@ -129,5 +130,9 @@ public class RobotContainer {
 
         return autoBuilder.fullAuto(pathGroup);
 
+    }
+
+    public Swerve getDrivetrain() {
+        return this.s_Swerve;
     }
 }

@@ -4,9 +4,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -22,6 +24,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+
+  private Timer timer;
 
   AddressableLED led;
   AddressableLEDBuffer ledBuffer;
@@ -82,12 +86,21 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
+    } else if (m_autonomousCommand == null) {
+      this.timer = new Timer();
+      timer.start();
     }
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    if(m_autonomousCommand == null) {
+        if(timer.get() <= 3) {
+          // m_robotContainer.getDrivetrain().drive(new Translation2d(10, 0), 0, isAutonomousEnabled(), isAutonomous());
+        }
+      }
+  }
 
   @Override
   public void teleopInit() {
