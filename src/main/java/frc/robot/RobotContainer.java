@@ -105,9 +105,12 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // Chooser
+        return this.simpleAutonomous();
         // return this.configureAutonomous();
-        return null;
+    }
+
+    public Command simpleAutonomous() {
+        return new SimpleAutoCommand(s_Swerve);
     }
 
     public Command configureAutonomous() {
@@ -115,6 +118,7 @@ public class RobotContainer {
         ArrayList<PathPlannerTrajectory> pathGroup = (ArrayList<PathPlannerTrajectory>) PathPlanner.loadPathGroup("ChargeStationAuto", new PathConstraints(4, 3));
 
         HashMap<String, Command> eventMap = new HashMap<>();
+        eventMap.put("End Point", new AutoBalance(s_Swerve));
 
         SwerveAutoBuilder autoBuilder = new SwerveAutoBuilder(
             s_Swerve::getPose,

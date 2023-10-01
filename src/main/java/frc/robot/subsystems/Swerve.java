@@ -75,7 +75,11 @@ public class Swerve extends SubsystemBase {
         for(SwerveModule mod : mSwerveMods){
             mod.setDesiredState(desiredStates[mod.moduleNumber], false);
         }
-    }    
+    }
+
+    public double getPitch() {
+        return gyro.getPitch();
+    }
 
     public Pose2d getPose() {
         return swerveOdometry.getPoseMeters();
